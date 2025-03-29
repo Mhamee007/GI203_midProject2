@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 public class Live : MonoBehaviour
 {
     public int totalLives = 3;  // จำนวนชีวิตเริ่มต้น
-    public float currentLives;
+    public int currentLives;
     public TMP_Text livesText;  // ลิงก์กับ Text UI
 
     private void Start()
@@ -14,12 +14,6 @@ public class Live : MonoBehaviour
         // กำหนดค่าชีวิตเริ่มต้น
         currentLives = totalLives;
         UpdateLivesUI();
-    }
-
-    private void UpdateLivesUI()
-    {
-        // อัปเดตข้อความใน UI
-        livesText.text = "Lives: " + currentLives;
 
         if (currentLives <= 0)
         {
@@ -27,6 +21,13 @@ public class Live : MonoBehaviour
 
             //gameOver scene c
         }
+    }
+
+    private void UpdateLivesUI()
+    {
+        // อัปเดตข้อความใน UI
+        livesText.text = "Lives: " + currentLives;
+
     }
 
     void OnCollisionEnter(Collision collision) // ตรวจจับการชน
