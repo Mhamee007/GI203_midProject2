@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class ScoreSum : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class ScoreSum : MonoBehaviour
     float scoreWin = 400;
     float scoreFinal;
 
+    public TMP_Text scoreText;  // UI Text show score
+
+    void Start()
+    {
+        scoreSummary();
+    }
     void AllScore()
     {
         //live------------------------
@@ -43,6 +50,7 @@ public class ScoreSum : MonoBehaviour
 
     void scoreSummary()
     {
+        scoreText.text = "Score" + scoreFinal;
         scoreFinal = scoreLive + scoreTime + scoreWin;   
     }
 }
