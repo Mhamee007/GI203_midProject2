@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 public class TimeCal : MonoBehaviour
 {
     public TMP_Text timerText;   // UI Text ที่จะใช้แสดงเวลา
-    private float timeElapsed; // ตัวแปรเก็บเวลาที่ผ่านไป
+    public float timeElapsed; // ตัวแปรเก็บเวลาที่ผ่านไป
     private bool isTimerRunning = true; // ตัวแปรตรวจสอบว่าเวลายังทำงานอยู่หรือไม่
 
     void Start()
