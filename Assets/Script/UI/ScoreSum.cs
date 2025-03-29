@@ -1,56 +1,59 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScoreSum : MonoBehaviour
 {
+    private Live live;
+    private TimeCal timeCal;
 
-    public Live live;
-    public TimeCal timecal;
-    float scoreLive = 0;
-    float scoreTime = 0;
-    float scoreWin = 400;
-    float scoreFinal;
-
-    public TMP_Text scoreText;  // UI Text show score
+    private int scoreLive = 0;
+    private int scoreTime = 0;
+    private int scoreWin = 400;
+    private int scoreFinal = 0;
 
     void Start()
     {
-        scoreSummary();
-    }
-    void AllScore()
-    {
-        //live------------------------
-        if (live.currentLives >= 3)
-        {
-            scoreLive =+300;
-        }
-        if (live.currentLives == 2)
-        {
-            scoreLive = +200;
-        }
-        if (live.currentLives == 1)
-        {
-            scoreLive = +100;
-        }
+        live = FindObjectOfType<Live>();
+        timeCal = FindObjectOfType<TimeCal>();
 
-        //Time-------------------------
-        if (timecal.timeElapsed <= 60)
-        {
-            scoreLive = +300;
-        }
-        if (live.currentLives >= 61)
-        {
-            scoreLive = +200;
-        }
-        if (live.currentLives >= 120)
-        {
-            scoreLive = +100;
-        }
+        CalculateScore();
     }
 
-    void scoreSummary()
+    void CalculateScore()
     {
-        scoreText.text = "Score" + scoreFinal;
-        scoreFinal = scoreLive + scoreTime + scoreWin;   
+        if (live != null)
+        {
+            Debug.Log("Player Lives: " + live.currentLives); // Debugging log
+
+            if (live.currentLives == 3)
+                scoreLive = 300;
+            else if (live.currentLives == 2)
+                scoreLive = 200;
+            else if (live.currentLives == 1)
+                scoreLive = 100;
+            else
+                scoreLive = 0; // Just in case
+        }
+
+        if (timeCal != null)
+        {
+            float timeElapsed = timeCal.timeElapsed;
+            Debug.Log("Time Elapsed: " + timeElapsed); // Debugging log
+
+            if (timeElapsed <= 60)
+                scoreTime = 300;
+            else if (timeElapsed > 60 && timeElapsed <= 120)
+                scoreTime = 200;
+            else
+                scoreTime = 100;
+        }
+
+        scoreFinal = scoreLive + scoreTime + scoreWin;
+        Debug.Log("Final Score: " + scoreFinal);
+
+        GameManager.Instance.SaveScore(scoreFinal);
     }
+
+
 }
