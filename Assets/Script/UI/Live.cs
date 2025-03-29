@@ -2,12 +2,14 @@
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class Live : MonoBehaviour
 {
     public int totalLives = 3;  // จำนวนชีวิตเริ่มต้น
     public int currentLives;
     public TMP_Text livesText;  // ลิงก์กับ Text UI
+    public string gameOver; 
 
     private void Start()
     {
@@ -15,12 +17,7 @@ public class Live : MonoBehaviour
         currentLives = totalLives;
         UpdateLivesUI();
 
-        if (currentLives <= 0)
-        {
-            Time.timeScale = 0;
-
-            //gameOver scene c
-        }
+        
     }
 
     private void UpdateLivesUI()
@@ -43,6 +40,12 @@ public class Live : MonoBehaviour
     {
         currentLives--;  // ลดจำนวนชีวิตลง
         UpdateLivesUI();  // อัปเดต UI
+        if (currentLives <= 0)
+        {
+            Time.timeScale = 0;
+            SceneManager.LoadScene(gameOver);
+
+        }
     }
 
     
