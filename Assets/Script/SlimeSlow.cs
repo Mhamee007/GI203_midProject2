@@ -10,7 +10,7 @@ public class SlimeSlow : MonoBehaviour
         {
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
 
-            if (rb != null)
+            if (rb != null) //
             {
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z); // Reset Y velocity
                 rb.AddForce(new Vector3(0, 0, -SlowForce), ForceMode.Impulse);
