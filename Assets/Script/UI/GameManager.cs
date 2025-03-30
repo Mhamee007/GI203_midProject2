@@ -24,5 +24,6 @@ public class GameManager : MonoBehaviour
     {
         finalScore = score;
         Debug.Log("Score Saved: " + finalScore);
+
     }
 }

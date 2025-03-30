@@ -46,6 +46,7 @@ public class Live : MonoBehaviour
             SceneManager.LoadScene(gameOver);
 
         }
+         FindObjectOfType<ScoreSum>().CalculateScore();
     }
 
     

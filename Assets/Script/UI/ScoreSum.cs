@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class ScoreSum : MonoBehaviour
 {
-    private Live live;
-    private TimeCal timeCal;
+    public Live live;
+    public TimeCal timeCal;
 
     private int scoreLive = 0;
     private int scoreTime = 0;
@@ -14,28 +14,32 @@ public class ScoreSum : MonoBehaviour
 
     void Start()
     {
-        live = FindObjectOfType<Live>();
-        timeCal = FindObjectOfType<TimeCal>();
 
+        Invoke("CalculateScore", 0.1f);
         CalculateScore();
     }
 
-    void CalculateScore()
+    public void CalculateScore()
     {
+        live = FindObjectOfType<Live>();
         if (live != null)
         {
-            Debug.Log("Player Lives: " + live.currentLives); // Debugging log
 
-            if (live.currentLives == 3)
+            float currentLives = live.currentLives;
+            Debug.Log("Player Lives: " + live.currentLives); // Debugging log
+            live.currentLives--;
+            if (currentLives == 3)
                 scoreLive = 300;
-            else if (live.currentLives == 2)
+            else if (currentLives == 2)
                 scoreLive = 200;
-            else if (live.currentLives == 1)
+            else if (currentLives == 1)
                 scoreLive = 100;
             else
                 scoreLive = 0; // Just in case
         }
 
+
+        timeCal = FindObjectOfType<TimeCal>();
         if (timeCal != null)
         {
             float timeElapsed = timeCal.timeElapsed;
