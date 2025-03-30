@@ -55,8 +55,10 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("wall")) //This player will not run on the wall.
         {
+            isGrounded = false;
             float moveY = 0f;
             float moveX = 0f;
+          
         }
 
         if (collision.gameObject.CompareTag("deathZone")) //death player
