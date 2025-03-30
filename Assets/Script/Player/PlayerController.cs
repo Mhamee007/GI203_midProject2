@@ -27,8 +27,10 @@ public class PlayerController : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
-        movement = new Vector3(moveX, 0, moveZ) * speed;
-        rb.linearVelocity = new Vector3(movement.x, rb.linearVelocity.y, movement.z);
+
+        movement = new Vector3(moveX * friction, 0, moveZ * friction) * speed; //running
+        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+
 
 
         if (Input.GetKey(KeyCode.Space) && isGrounded == true && isAir == false) //Jumping
@@ -37,7 +39,7 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
 
-        if (moveX == 0 && moveZ == 0)
+        if (moveX == 0 && moveZ == 0) //smoothStop
         {
             rb.linearVelocity = new Vector3(rb.linearVelocity.x * friction, rb.linearVelocity.y, rb.linearVelocity.z * friction);
         }

@@ -17,6 +17,7 @@ public class ScoreSum : MonoBehaviour
 
         Invoke("CalculateScore", 0.1f);
         CalculateScore();
+        live.currentLives = 4;
     }
 
     public void CalculateScore()
@@ -28,6 +29,7 @@ public class ScoreSum : MonoBehaviour
             float currentLives = live.currentLives;
             Debug.Log("Player Lives: " + live.currentLives); // Debugging log
             live.currentLives--;
+
             if (currentLives == 3)
                 scoreLive = 300;
             else if (currentLives == 2)
@@ -58,6 +60,5 @@ public class ScoreSum : MonoBehaviour
 
         GameManager.Instance.SaveScore(scoreFinal);
     }
-
 
 }

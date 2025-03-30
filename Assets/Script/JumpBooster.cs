@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class IceSpeed : MonoBehaviour
+public class JumpBooster : MonoBehaviour
 {
 
-    [SerializeField] float SpeedBoostForce = 13f;
+    [SerializeField] float jumpBoostForce = 13f;
     
     void OnCollisionEnter(Collision collision)
     {
@@ -11,10 +11,10 @@ public class IceSpeed : MonoBehaviour
         {
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
 
-            if (rb != null)
+            if (rb != null) //
             {
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z); // Reset Y velocity
-                rb.AddForce(Vector3.forward * SpeedBoostForce, ForceMode.Impulse); // Add upward force
+                rb.AddForce(Vector3.up * jumpBoostForce, ForceMode.Impulse); // Add upward force
             }
         }
 
