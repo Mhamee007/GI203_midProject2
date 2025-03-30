@@ -30,11 +30,11 @@ public class ScoreSum : MonoBehaviour
             Debug.Log("Player Lives: " + live.currentLives); // Debugging log
             live.currentLives--;
 
-            if (currentLives == 3)
+            if (currentLives == 4)
                 scoreLive = 300;
-            else if (currentLives == 2)
+            else if (currentLives == 3)
                 scoreLive = 200;
-            else if (currentLives == 1)
+            else if (currentLives == 2)
                 scoreLive = 100;
             else
                 scoreLive = 0; // Just in case
