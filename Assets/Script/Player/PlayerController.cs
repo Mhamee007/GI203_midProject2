@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private float respawnDelay = 2f;
     [SerializeField]float speed = 3f;
     [SerializeField] float jumpForce = 25f;
+    [SerializeField] private float friction = 0.9f;
+    private Vector3 movement;
 
     float gravity = Physics.gravity.magnitude;
 
@@ -18,22 +20,30 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-    void Update() 
+    void Update()
     {
         //Player movement----------------------------------------------------
 
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
-        Vector3 move = new Vector3(moveX, 0, moveZ) * speed;//speed walk
-        rb.linearVelocity = new Vector3(move.x, rb.linearVelocity.y, move.z);//spin of player
+        movement = new Vector3(moveX, 0, moveZ) * speed;
+        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+
 
         if (Input.GetKey(KeyCode.Space) && isGrounded == true && isAir == false) //Jumping
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
+
+        if (moveX == 0 && moveZ == 0)
+        {
+            rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y, rb.velocity.z * friction);
+        }
+
     }
+
 
     // On ground and Air cheeck---------------------------------------------
     void OnCollisionEnter(Collision collision)
