@@ -16,8 +16,6 @@ public class Live : MonoBehaviour
         // กำหนดค่าชีวิตเริ่มต้น
         currentLives = totalLives;
         UpdateLivesUI();
-
-        
     }
 
     private void UpdateLivesUI()
@@ -43,10 +41,12 @@ public class Live : MonoBehaviour
         if (currentLives <= 0)
         {
             Time.timeScale = 0;
+            
             SceneManager.LoadScene(gameOver);
-
+ 
         }
-         FindObjectOfType<ScoreSum>().CalculateScore();
+        
+    
     }
 
     

@@ -25,6 +25,8 @@ public class RestartGame : MonoBehaviour
     void ChangeScene()
     {
         Time.timeScale = 1f; //re speed game
+        GameManager.Instance.ResetScore();
         SceneManager.LoadScene(sceneName);
+
     }
 }
