@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         float moveZ = Input.GetAxis("Vertical");
 
         movement = new Vector3(moveX, 0, moveZ) * speed;
-        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+        rb.linearVelocity = new Vector3(movement.x, rb.linearVelocity.y, movement.z);
 
 
         if (Input.GetKey(KeyCode.Space) && isGrounded == true && isAir == false) //Jumping
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
         if (moveX == 0 && moveZ == 0)
         {
-            rb.velocity = new Vector3(rb.velocity.x * friction, rb.velocity.y, rb.velocity.z * friction);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x * friction, rb.linearVelocity.y, rb.linearVelocity.z * friction);
         }
 
     }
