@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
 
         movement = new Vector3(moveX * friction, 0, moveZ * friction) * speed; //running with Friction
-        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z); //falling bt gravity
+        rb.linearVelocity = new Vector3(movement.x, rb.linearVelocity.y, movement.z); //falling bt gravity
 
 
 
